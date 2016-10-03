@@ -10,62 +10,42 @@
 require "./titleize.rb"
 
 module Blog
-  attr_accessor :article
-
-  def initialize(article)
-   @article = []
- end
 
   class Article
-    include HelperMethods
-    include Blog
-
     attr_accessor :title
     attr_accessor :body
 
     def initialize(title,body)
-      @title = title.titleize
+      @title = title
       @body = body
     end
+  end
+end
 
+include Blog
+include HelperMethods
+
+
+class Snippet < Article
+
+  def title
+     p titleize(@title)
   end
 
-  class Snippet < Article
-
-    def initialize(title,body)
-      super(title)
-      super(body)
-    end
-
-    def body
-      if super(body).length > 100
-      @body = super(body).slice(0,100) + "..."
-    else
-      @body = super(body).slice(0,100)
-    end
-    end
-
+  def body
+    if @body.length > 100
+    p @body.slice(0,100) + "..."
+  else
+    p @body
+  end
   end
 
 end
 
-blog1 = Blog.new(article1)
-article1 = Article.new("a tale of two cities","It was the best of times, it was
- the worst of times, it was the age of wisdom, it was the age of foolishness,
- it was the epoch of belief, it was the epoch of incredulity, it was the season
- of Light, it was the season of Darkness, it was the spring of hope, it was the
-  winter of despair, we had everything before us, we had nothing before us, we
-  were all going direct to Heaven, we were all going direct the other way--in short,
-   the period was so far like the present period, that some of its noisiest authorities
-   insisted on its being received, for good or for evil, in the superlative degree of comparison only.")
-snippet1 = Snippet.new("a tale of two cities","It was the best of times, it was
- the worst of times, it was the age of wisdom, it was the age of foolishness,
- it was the epoch of belief, it was the epoch of incredulity, it was the season
- of Light, it was the season of Darkness, it was the spring of hope, it was the
-  winter of despair, we had everything before us, we had nothing before us, we
-  were all going direct to Heaven, we were all going direct the other way--in short,
-  the period was so far like the present period, that some of its noisiest authorities
-  insisted on its being received, for good or for evil, in the superlative degree of comparison only.")
-p article1
-p snippet1
-p snippet1.body
+# Blog.article
+article1 = Article.new("a tale of two cities","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+snippet1 = Snippet.new("a tale of two cities","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+# article1
+# snippet1
+snippet1.body
+snippet1.title
