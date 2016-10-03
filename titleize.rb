@@ -25,8 +25,11 @@ myArray.each_with_index do |word,index|
         end
       end
 final_arr << myArray.join(" ")
+ final_arr.join(" ")
 end
-module_function :titleize
+
 end
-string = "the lord of the rings and the philosopher in the dark"
-puts HelperMethods.titleize(string)
+include HelperMethods
+
+# titleize("the lord of the rings and the philosopher in the dark")
+# p HelperMethods.titleize()
